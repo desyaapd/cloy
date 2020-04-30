@@ -33,3 +33,57 @@ Pada metode enkripsi kedua __"encv2 _ "__ dirancang dengan detail filesystem ber
   
 Oleh karena itu, untuk setiap __system call__ yang telah ditentukan maka kita memanggil 3 (tiga) fungsi antara lain :
   * Fungsi pertama adalah fungsi __changePath()__
+    ```bash
+    void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {
+  char *ptr = strstr(path, "/encv1_");
+  int state = 0;
+  if (ptr != NULL) {
+    if (strstr(ptr+1, "/") != NULL) state = 1;
+  }
+  char fixPath[1000];
+  memset(fixPath, 0, sizeof(fixPath));
+  if (ptr != NULL && state) {
+    ptr = strstr(ptr+1, "/");
+    char pathEncvDirBuff[1000];
+    char pathEncryptedBuff[1000];
+    strcpy(pathEncryptedBuff, ptr);
+    strncpy(pathEncvDirBuff, path, ptr-path);
+    if (isWriteOper) {
+      char pathFileBuff[1000];
+      char pathDirBuff[1000];
+      getDirAndFile(pathDirBuff, pathFileBuff, pathEncryptedBuff);
+      decrypt(pathDirBuff, 0);
+      sprintf(fixPath, "%s%s/%s", pathEncvDirBuff, pathDirBuff, pathFileBuff);
+    } else if (isFileAsked) {
+      char pathFileBuff[1000];
+      char pathDirBuff[1000];
+      char pathExtBuff[1000];
+      getDirAndFile(pathDirBuff, pathFileBuff, pathEncryptedBuff);
+      char *whereIsExtension = strrchr(pathFileBuff, '.');
+      if (whereIsExtension-pathFileBuff <= 1) {
+        decrypt(pathDirBuff, 0);
+        decrypt(pathFileBuff, 0);
+        sprintf(fixPath, "%s%s/%s", pathEncvDirBuff, pathDirBuff, pathFileBuff);
+      } else {
+        char pathJustFileBuff[1000];
+        memset(pathJustFileBuff, 0, sizeof(pathJustFileBuff));
+        strcpy(pathExtBuff, whereIsExtension);
+        snprintf(pathJustFileBuff, whereIsExtension-pathFileBuff+1, "%s", pathFileBuff);
+        decrypt(pathDirBuff, 0);
+        decrypt(pathJustFileBuff, 0);
+        sprintf(fixPath, "%s%s/%s%s", pathEncvDirBuff, pathDirBuff, pathJustFileBuff, pathExtBuff);
+      }
+    } else {
+      decrypt(pathEncryptedBuff, 0);
+      sprintf(fixPath, "%s%s", pathEncvDirBuff, pathEncryptedBuff);
+    }
+  } else {
+    strcpy(fixPath, path);
+  }
+  if (strcmp(path, "/") == 0) {
+    sprintf(fpath, "%s", dirpath);
+  } else {
+    sprintf(fpath, "%s%s", dirpath, fixPath);
+  }
+}
+```
