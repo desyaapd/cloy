@@ -144,3 +144,10 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
       }
       ```
       Fungsi di atas akan bekerja pada kondisi __0.0__ dimanan kondisi __1.0__ dan kondisi __0.1__ tidak memiliki nilai, maka ``` decrypt(pathEncryptedBuff, 0);``` akan terjadi proses pendeskripsian pada isi dari _buffer_ tersebut dan kemudian ``` sprintf(fixPath, "%s%s", pathEncvDirBuff, pathEncryptedBuff);``` disimpan di dalam __fixPath__ dengan format "__encv1 _ , decrypt path__".
+      ```bash
+          else {
+        strcpy(fixPath, path);
+      }
+      ```
+      Fungsi di atas berjalan pada state bernilai 0 yang dimana hanya ada 1 (satu) _directory_ atau _file_ pada _path_ yang berada setelah __"encv1 _ "__, maka ```strcpy(fixPath, path);``` _path_ akan langsung disimpan di dalam __fixPath__. 
+      
