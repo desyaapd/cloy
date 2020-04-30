@@ -5,8 +5,8 @@ Nama Anggota Kelompok T17 :
 
 ## Soal Shift Modul 4 dan Penyelesaian Soal Shift Modul 4
 ### Soal 1
-Jasir, pekerja baru yang jenius, akan membuat program yang mengimplementasikan 2 (dua) buah metode enkripsi yang berjalan pada _directory_. Pada metode enkripsi pertama __"encv1"__ dirancang dengan detail filesystem berikut ini :
-  * Jika terdapat sebuah _directory_ yang dibuat dan di-_rename_ dengan awalan kata __"encv1"__, maka _directory_ tersebut akan terenkripsi menggunakan metode enkripsi pertama __"encv1"__. 
+Jasir, pekerja baru yang jenius, akan membuat program yang mengimplementasikan 2 (dua) buah metode enkripsi yang berjalan pada _directory_. Pada metode enkripsi pertama __"encv1_"__ dirancang dengan detail filesystem berikut ini :
+  * Jika terdapat sebuah _directory_ yang dibuat dan di-_rename_ dengan awalan kata __"encv1_"__, maka _directory_ tersebut akan terenkripsi menggunakan metode enkripsi pertama __"encv1_"__. 
   * Jika terdapat sebuah _directory_ terenkripsi yang di-_rename_, maka _directory_ tersebut menjadi tidak terenkripsi. 
   * Setiap pembuatan _directory_ terenkripsi baru (__mkdir__ ataupun __rename__) akan tercatat ke sebuah database/log dalam file. 
   * Proses pengenkripsian dalam metode enkripsi pertama ini menggunakan metode enkripsi _caesar cipher_ dengan _key_ 
