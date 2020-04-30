@@ -96,5 +96,5 @@ Oleh karena itu, untuk setiap __system call__ yang telah ditentukan maka kita me
             if (strstr(ptr+1, "/") != NULL) state = 1;
           }
       ```
-  Fungsi ```void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {``` akan melakukan pencarian terhadap _file name_ dengan nama __"encv1 _ "__
+  Fungsi ```void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {``` akan melakukan pencarian terhadap _file name_ dengan nama __"encv1 _ "__ 
   
