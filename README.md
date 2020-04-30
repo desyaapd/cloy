@@ -89,12 +89,7 @@ Oleh karena itu, untuk setiap __system call__ yang telah ditentukan maka kita me
     ```
  Dari _code_ di atas, pada fungsi berikut :
     ```bash
-       void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {
-            char *ptr = strstr(path, "/encv1_");
-            int state = 0;
-            if (ptr != NULL) {
-              if (strstr(ptr+1, "/") != NULL) state = 1;
-            }
-      ```
+    aaaa
+    ```
   Fungsi ```void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {``` akan melakukan pencarian terhadap _file name_ dengan nama __"encv1 _ "__ 
   
