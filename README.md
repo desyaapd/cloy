@@ -87,5 +87,5 @@ Oleh karena itu, untuk setiap __system call__ yang telah ditentukan maka kita me
       }
     }
     ```
-Fungsi ```void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {``` akan melakukan pencarian terhadap _file name_ dengan nama __"encv1 _ "__. Kemudian, akan ada _pointer_ pada file tersebut dan ```int state = 0;``` state-nya menjadi __0__. Namun, ```if (ptr != NULL) {``` apabila _file name_ tidak bernama __"encv1 _ "__ dan ``` if (strstr(ptr+1, "/") != NULL) ``` apabila _file name_ bernama  __"encv1 _ "__ diikuti dengan _path_ yang berlanjut maka ```state = 1;``` state-nya menjadi __1__. 
+    Fungsi ```void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {``` akan melakukan pencarian terhadap _file name_ dengan nama __"encv1 _ "__. Kemudian, akan ada _pointer_ pada file tersebut dan ```int state = 0;``` state-nya menjadi __0__. Namun, ```if (ptr != NULL) {``` apabila _file name_ tidak bernama __"encv1 _ "__ dan ``` if (strstr(ptr+1, "/") != NULL) ``` apabila _file name_ bernama  __"encv1 _ "__ diikuti dengan _path_ yang berlanjut maka ```state = 1;``` state-nya menjadi __1__. 
   
