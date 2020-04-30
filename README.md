@@ -88,11 +88,19 @@ Oleh karena itu, untuk setiap __system call__ yang telah ditentukan maka kita me
     }
     ```
     Fungsi ```void changePath(char *fpath, const char *path, int isWriteOper, int isFileAsked) {``` akan melakukan pencarian terhadap _file name_ dengan nama __"encv1 _ "__. Kemudian, akan ada _pointer_ pada file tersebut dan ```int state = 0;``` state-nya menjadi __0__. Namun, ```if (ptr != NULL) {``` apabila _file name_ tidak bernama __"encv1 _ "__ dan ``` if (strstr(ptr+1, "/") != NULL) ``` apabila _file name_ bernama  __"encv1 _ "__ diikuti dengan _path_ yang berlanjut maka ```state = 1;``` state-nya menjadi __1__. <br>
-    Tidak lupa untuk mendefinisikan __buffer__ yang merupakan tempat penyimpanan _processed path_ dari 3 (tiga) keperluan yang berbeda (__mkdir__, __create__ dan __write__).
+    Tidak lupa untuk mendefinisikan __buffer__ yang merupakan tempat penyimpanan _processed path_ dari 3 (tiga) keperluan yang berbeda (__1.0__, __0.1__ dan __0.0__).
     ```bash
     char fixPath[1000];
     memset(fixPath, 0, sizeof(fixPath));
     ```
-    Terdapat satu kondisi yang terdapat di dalam fungsi __fixPath__ yang akan bekerja untuk kondisi __mkdir__ dan __create__ yang 
+    Terdapat satu kondisi yang terdapat di dalam fungsi __fixPath__ yang akan bekerja untuk kondisi __1.0__ dan __0.1__ yang 
   akan mendefinisikan dan mengisi _buffer_.
-    
+    ```bash 
+    if (ptr != NULL && state) {
+    ptr = strstr(ptr+1, "/");
+    char pathEncvDirBuff[1000];
+    char pathEncryptedBuff[1000];
+    strcpy(pathEncryptedBuff, ptr);
+    strncpy(pathEncvDirBuff, path, ptr-path);
+    ```
+    Pada ```strncpy(pathEncvDirBuff, path, ptr-path);``` akan melakukan _copy_ dari _path_ ke __EncvDirBuff__.
