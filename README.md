@@ -29,6 +29,6 @@ Pada metode enkripsi kedua __"encv2 _ "__ dirancang dengan detail filesystem ber
   Untuk mendukung pembuatan program mengenai metode enkripsi tersebut, maka kita harus membuat fungsi __system call__ yang bertujuan untuk mengatur 3 (tiga) keperluan tertentu sesuai permintaan soal :
   * ```mkdir``` : kondisi dimana terjadi pembuatan _directory_ yang telah ditentukan.
   * ```create``` : kondisi dimana terjadi proses _rename_ pada _directory_ sesuai dengan nama yang telah ditentukan.
-  * ```write``` : kondisi dimana terjadi penyimpanan perubahan pada database/log pada file.
+  * ```write``` : kondisi dimana terjadi penyimpanan perubahan pada database/log pada file. <br>
   Oleh karena itu, untuk setiap __system call__ yang telah ditentukan maka kita memanggil 3 (tiga) fungsi antara lain :
   * Fungsi pertama adalah fungsi __changePath()__
