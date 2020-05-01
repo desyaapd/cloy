@@ -171,8 +171,7 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
 
 
 	return 0;
-   }
-    ```
+        ```
     Fungsi __changePath()__ dijalankan oleh _system call_ untuk kondisi __0.1__ yang kemudian akan dilakukan ```if (access(fpath, F_OK) == -1) {``` pengecekan mengenai apakah _path_ yang diinputkan sudah menjadi  _file_ atau _directory_ dan apakah _path_ tersebut sudah terenkripsi. Jika _path_ belum berhasil diinputkan menjadi _file_ atau _directory_, maka ```changePath(fpath, path, 0, 0);``` fungsi __changePath__ dijalankan untuk kondisi __0.0__. 
       
       
