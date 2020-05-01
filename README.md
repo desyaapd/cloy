@@ -149,5 +149,35 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
         strcpy(fixPath, path);
       }
       ```
-      Fungsi di atas berjalan pada state bernilai 0 yang dimana hanya ada 1 (satu) _directory_ atau _file_ pada _path_ yang berada setelah __"encv1 _ "__, maka ```strcpy(fixPath, path);``` _path_ akan langsung disimpan di dalam __fixPath__. 
+      Fungsi di atas berjalan pada state bernilai 0 yang dimana hanya ada 1 (satu) _directory_ atau _file_ pada _path_ yang berada setelah __"encv1 _ "__, maka ```strcpy(fixPath, path);``` _path_ akan langsung disimpan di dalam __fixPath__. <br>
+      ```bash
+      static int _getattr(const char *path, struct stat *stbuf)
+      {
+
+        char fpath[1000];
+        changePath(fpath, path, 0, 1);
+        if (access(fpath, F_OK) == -1) {
+          memset(fpath, 0, sizeof(fpath));
+          changePath(fpath, path, 0, 0);
+        }
+
+        int res;
+
+        res = lstat(fpath, stbuf);
+
+        const char *desc[] = {path};
+        logFile("INFO", "GETATTR", res, 1, desc);
+
+        if (res == -1) return -errno;
+
+
+        return 0;
+      }
+      ```
+      Fungsi __cha
       
+      
+      
+      System call ini akan menjalankan fungsi changePath() dengan kondisi (0.1) karena _getattr bukan merupakan write operation. Selanjutnya akan dilakukan pengecekan eksistensi path yang diinputkan sebagai file atau directory dan sudah terenkripsi atau belum menggunakan (access(fpath, F_OK) == -1) jika tidak dapat di akses sebagai file maka akan dijalankan fungsi changePath untuk path kedalam fpath dengan kondisi (0.0) atau kondisi untuk direktori
+
+Kemudian akan dijalankan fungsi lstat() yang akan mengambil symbolic link status dari path yang diberikan dan dimasukan kedalam stbuf, Pada setiap penggunaan system call akan ada sebuah log yang di write kedalam log file menggunakan fungsi logFile, untuk system call ini pendefinisian log adalah dengan level info, dengan nama system call GETATTR, result dari lstat, 1 dan des yang menunjuk kepada path yang tentukan
