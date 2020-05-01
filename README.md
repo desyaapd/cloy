@@ -15,15 +15,6 @@ Jasir, pekerja baru yang jenius, akan membuat program yang mengimplementasikan 2
     ```
   * Metode enkripsi pada suatu direktori juga berlaku kedalam direktori lainnya yang ada didalamnya. <br>
 __Note:__ Metode enkripsi pertama ini mengabaikan karakter ‘/’ pada penamaan file dan ekstensi dari file. 
-### Soal 2
-Pada metode enkripsi kedua __"encv2 _ "__ dirancang dengan detail filesystem berikut ini :
-  * Jika terdapat sebuah _directory_ yang dibuat dan di-_rename_ dengan awalan kata __"encv2 _ "__, maka _directory_ tersebut akan terenkripsi menggunakan metode enkripsi pertama __"encv2 _ "__. 
-  * Jika terdapat sebuah _directory_ terenkripsi yang di-_rename_, maka _directory_ tersebut menjadi tidak terenkripsi. 
-  * Setiap pembuatan _directory_ terenkripsi baru (__mkdir__ ataupun __rename__) akan tercatat ke sebuah database/log dalam file. 
-  * Metode enkripsi pada suatu direktori juga berlaku kedalam direktori lainnya yang ada didalamnya.
-  * Pada metode enkripsi kedua, file-file pada direktori asli akan menjadi bagian-bagian kecil sebesar 1024 bytes dan menjadi normal ketika diakses melalui filesystem rancangan jasir.
-### Soal 3
-### Soal 4
   #### Code :
   #### Penyelesaian :
   Untuk mendukung pembuatan program mengenai metode enkripsi tersebut, maka kita harus membuat fungsi __system call__ yang bertujuan untuk mengatur 3 (tiga) keperluan tertentu sesuai permintaan soal :
@@ -149,54 +140,21 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
         strcpy(fixPath, path);
       }
       ```
-      Fungsi di atas berjalan pada state bernilai 0 yang dimana hanya ada 1 (satu) _directory_ atau _file_ pada _path_ yang berada setelah __"encv1 _ "__, maka ```strcpy(fixPath, path);``` _path_ akan langsung disimpan di dalam __fixPath__. <br>
-      Lalu, untuk fungsi _ __getattr__ berikut ini:
-      ```bash
-      static int _getattr(const char *path, struct stat *stbuf)
-      {
-	char fpath[1000];
-  	changePath(fpath, path, 0, 1);
-  	if (access(fpath, F_OK) == -1) {
-    		memset(fpath, 0, sizeof(fpath));
-    		changePath(fpath, path, 0, 0);
-  	}
+      
+### Soal 4
+Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _log file_ yang berguna untuk menyimpan daftar perintah dari _system call_ yang telah dijalankan. Adapun ketentuan dari _log file_ tersebut yakni sebagai berikut :
+* _log_ akan terbagi menjadi 2 (dua) level yaitu level __INFO__ dan level __WARNING__.
+* _log_ level __WARNING__ merupakan pencatatan log untuk _system call_ ```rmdir``` dan ```unlink```.
+* Sehingga pencatatan log untuk _system call_ yang lain akan ditangani oleh _log_ level __INFO__.
+* Adapun format _logging_ yakni ```[LEVEL]::[yy][mm][dd]-[HH]:[MM]:[SS]::[CMD]::[DESC ...]``` <br>
+	Keterangan :
+	LEVEL    : Level logging
+	yy   	 : Tahun dua digit
+	mm    	 : Bulan dua digit
+	dd    	 : Hari dua digit
+	HH    	 : Jam dua digit
+	MM    	 : Menit dua digit
+	SS    	 : Detik dua digit
+	CMD      : System call yang terpanggil
+	DESC     : Deskripsi tambahan (bisa lebih dari satu, dipisahkan dengan ::)
 
-	int res;
-
-	res = lstat(fpath, stbuf);
-
-  	const char *desc[] = {path};
-  	logFile("INFO", "GETATTR", res, 1, desc);
-
-	if (res == -1) return -errno;
-
-
-	return 0;
-	}
-	``` 
-    Fungsi __changePath()__ dijalankan oleh _system call_ untuk kondisi __0.1__ yang kemudian akan dilakukan ```if (access(fpath, F_OK) == -1) {``` pengecekan mengenai apakah _path_ yang diinputkan sudah menjadi  _file_ atau _directory_ dan apakah _path_ tersebut sudah terenkripsi. Jika _path_ belum berhasil diinputkan menjadi _file_ atau _directory_, maka ```changePath(fpath, path, 0, 0);``` fungsi __changePath()__ dijalankan untuk kondisi __0.0__. <br>
-    ```bash
-    static int _access(const char *path, int mask)
-    {
-	char fpath[1000];
-	changePath(fpath, path, 0, 1);
-	if (access(fpath, F_OK) == -1) {
-	    memset(fpath, 0, 1000);
-	    changePath(fpath, path, 0, 0);
-	}
-
-	int res;
-
-	res = access(fpath, mask);
-
-	const char *desc[] = {path};
-	logFile("INFO", "ACCESS", res, 1, desc);
-
-	if (res == -1) return -errno;
-
-
-	return 0;
-	}
-	```
-	Kemudian, fungsi selanjutnya yang akan dijalankan adalah fungsi _ __access__ yang berguna untuk melakukan _permission check_ pada pengguna.
- 
