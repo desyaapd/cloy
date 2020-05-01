@@ -152,21 +152,20 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
       Fungsi di atas berjalan pada state bernilai 0 yang dimana hanya ada 1 (satu) _directory_ atau _file_ pada _path_ yang berada setelah __"encv1 _ "__, maka ```strcpy(fixPath, path);``` _path_ akan langsung disimpan di dalam __fixPath__. <br>
     ```bash 
     static int _getattr(const char *path, struct stat *stbuf)
-{
-
+    {
 	char fpath[1000];
-  changePath(fpath, path, 0, 1);
-  if (access(fpath, F_OK) == -1) {
-    memset(fpath, 0, sizeof(fpath));
-    changePath(fpath, path, 0, 0);
-  }
+  	changePath(fpath, path, 0, 1);
+  	if (access(fpath, F_OK) == -1) {
+    		memset(fpath, 0, sizeof(fpath));
+    		changePath(fpath, path, 0, 0);
+  	}
 
 	int res;
 
 	res = lstat(fpath, stbuf);
 
-  const char *desc[] = {path};
-  logFile("INFO", "GETATTR", res, 1, desc);
+  	const char *desc[] = {path};
+  	logFile("INFO", "GETATTR", res, 1, desc);
 
 	if (res == -1) return -errno;
 
