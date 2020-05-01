@@ -173,11 +173,6 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
 	return 0;
    }
     ```
-    Pada 
-  Fungsi __changePath()__
+    Fungsi __changePath()__ dijalankan oleh _system call_ untuk kondisi __0.1__ yang kemudian akan dilakukan ```if (access(fpath, F_OK) == -1) {``` pengecekan mengenai apakah _path_ yang diinputkan sudah menjadi  _file_ atau _directory_ dan apakah _path_ tersebut sudah terenkripsi. Jika _path_ belum berhasil diinputkan menjadi _file_ atau _directory_, maka ```changePath(fpath, path, 0, 0);``` fungsi __changePath__ dijalankan untuk kondisi __0.0__. 
       
       
-      
-      System call ini akan menjalankan fungsi changePath() dengan kondisi (0.1) karena _getattr bukan merupakan write operation. Selanjutnya akan dilakukan pengecekan eksistensi path yang diinputkan sebagai file atau directory dan sudah terenkripsi atau belum menggunakan (access(fpath, F_OK) == -1) jika tidak dapat di akses sebagai file maka akan dijalankan fungsi changePath untuk path kedalam fpath dengan kondisi (0.0) atau kondisi untuk direktori
-
-Kemudian akan dijalankan fungsi lstat() yang akan mengambil symbolic link status dari path yang diberikan dan dimasukan kedalam stbuf, Pada setiap penggunaan system call akan ada sebuah log yang di write kedalam log file menggunakan fungsi logFile, untuk system call ini pendefinisian log adalah dengan level info, dengan nama system call GETATTR, result dari lstat, 1 dan des yang menunjuk kepada path yang tentukan
