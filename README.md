@@ -152,14 +152,27 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
       Fungsi di atas berjalan pada state bernilai 0 yang dimana hanya ada 1 (satu) _directory_ atau _file_ pada _path_ yang berada setelah __"encv1 _ "__, maka ```strcpy(fixPath, path);``` _path_ akan langsung disimpan di dalam __fixPath__. <br>
       Lalu, untuk fungsi _ __getattr__ berikut ini:
       ```bash
-	static int _getattr(const char *path, struct stat *stbuf)
-	{
-		char fpath[1000];
-	  	changePath(fpath, path, 0, 1);
-	  	if (access(fpath, F_OK) == -1) {
-	    		memset(fpath, 0, sizeof(fpath));
-	    		changePath(fpath, path, 0, 0);
-	  	}
+      static int _getattr(const char *path, struct stat *stbuf)
+      {
+	char fpath[1000];
+  	changePath(fpath, path, 0, 1);
+  	if (access(fpath, F_OK) == -1) {
+    		memset(fpath, 0, sizeof(fpath));
+    		changePath(fpath, path, 0, 0);
+  	}
+
+	int res;
+
+	res = lstat(fpath, stbuf);
+
+  	const char *desc[] = {path};
+  	logFile("INFO", "GETATTR", res, 1, desc);
+
+	if (res == -1) return -errno;
+
+
+	return 0;
+	}
 	``` 
     Fungsi __changePath()__ dijalankan oleh _system call_ untuk kondisi __0.1__ yang kemudian akan dilakukan ```if (access(fpath, F_OK) == -1) {``` pengecekan mengenai apakah _path_ yang diinputkan sudah menjadi  _file_ atau _directory_ dan apakah _path_ tersebut sudah terenkripsi. Jika _path_ belum berhasil diinputkan menjadi _file_ atau _directory_, maka ```changePath(fpath, path, 0, 0);``` fungsi __changePath()__ dijalankan untuk kondisi __0.0__. <br>
     ```bash
@@ -186,6 +199,4 @@ Begitupun apabila ``` else {``` ditemukan ekstensi sesuai dengan _path_ yang dit
 	}
 	```
 	Kemudian, fungsi selanjutnya yang akan dijalankan adalah fungsi _ __access__ yang berguna untuk melakukan _permission check_ pada pengguna.
-    
-      
-      
+ 
