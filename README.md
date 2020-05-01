@@ -157,4 +157,28 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
 		SS    	 : Detik dua digit <br>
 		CMD      : System call yang terpanggil <br>
 		DESC     : Deskripsi tambahan (bisa lebih dari satu, dipisahkan dengan ::) <br>
+  #### Code :
+  #### Penyelesaian :
+  ```bash
+  static const char *logpath = "/home/akmu/modul4/fuse/fs_log.txt";
+
+  void logFile(char *level, char *cmd, int res, int lenDesc, const char *desc[]) {
+  FILE *f = fopen(logpath, "a");
+  time_t t;	
+  struct tm *tmp;
+  char timeBuff[100];
+
+  time(&t);
+  tmp = localtime(&t);
+  strftime(timeBuff, sizeof(timeBuff), "%y%m%d-%H:%M:%S", tmp);
+
+  fprintf(f, "%s::%s::%s::%d", level, timeBuff, cmd, res); 
+  for (int i = 0; i < lenDesc; i++) {	
+    fprintf(f, "::%s", desc[i]);
+  }
+  fprintf(f, "\n");
+
+  fclose(f);
+  ```
+  
 
