@@ -181,5 +181,5 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
   fclose(f);
   ```
   * ```static const char *logpath = "/home/akmu/modul4/fuse/fs_log.txt";``` <br>
-  _log file_ ini akan diletakkan pada _directory_ __/home/akmu/modul4/fuse__ dengan nama _log file_ tersebut adalah __fs _ log.txt__
-
+  _log file_ ini akan diletakkan pada _directory_ __/home/akmu/modul4/fuse__ dengan nama _log file_ tersebut adalah __fs _ log.txt__ <br>
+Pada fungsi __logFile()__ ```void logFile(char *level, char *cmd, int res, int lenDesc, const char *desc[]) {``` akan mengatur format _logging_ yang sesuai dengan ketentuan _log file_ pada soal di atas antara lain ```level``` untuk menunjukkan _system call_ yang terjadi termasuk ke dalam level mana, ```cmd``` akan menunjukkan _system call_ yang terpanggil, ```res``` akan menyimopan status dari file tersebut, ```lenDesc``` akan menunjukkan panjang _file path_ dan ```desc[]``` akan menunjukkan _absolute file path_.
