@@ -187,9 +187,9 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
   * Dalam format _logging_ terdapat waktu pemanggilan _system call_ tersebut. Oleh karena itu, kita membutuhkan ``` char timeBuff[100];``` sebuah _buffer_ yang berguna untuk menyimpan waktu pemanggilan _system call_ tersebut dengan menggunakan fungsi ```strftime(timeBuff, sizeof(timeBuff), "%y%m%d-%H:%M:%S", tmp);```
   * Format _logging_ dalam fungsi __logFile()__ akan dituliskan ke dalam _log file_ menggunakan fungsi ```fprintf(f, "%s::%s::%s::%d", level, timeBuff, cmd, res); ```
   * Lalu, untuk menunjukkan ```desc[]``` _absolute file path_ maka akan digunakan fungsi iterasi di bawah ini 
-  ```bash
-   for (int i = 0; i < lenDesc; i++) {	
+    ```bash
+    for (int i = 0; i < lenDesc; i++) {	
    	fprintf(f, "::%s", desc[i]);
-   ```
-   karena _absolute file path_ akan ditemukan sepanjang ```lenDesc``` yang menunjukkan panjang _file path_ tersebut.
+    ```
+    karena _absolute file path_ akan ditemukan sepanjang ```lenDesc``` yang menunjukkan panjang _file path_ tersebut.
    
