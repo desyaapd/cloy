@@ -180,5 +180,5 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
 
   fclose(f);
   ```
-  
+  _log file_ ini akan diletakkan pada _directory_ __/home/akmu/modul4/fuse__ dengan nama _log file_ tersebut adalah __fs _ log.txt__
 
