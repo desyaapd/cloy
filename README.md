@@ -147,14 +147,14 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
 * _log_ level __WARNING__ merupakan pencatatan log untuk _system call_ ```rmdir``` dan ```unlink```.
 * Sehingga pencatatan log untuk _system call_ yang lain akan ditangani oleh _log_ level __INFO__.
 * Adapun format _logging_ yakni ```[LEVEL]::[yy][mm][dd]-[HH]:[MM]:[SS]::[CMD]::[DESC ...]``` <br>
-	Keterangan :
-	LEVEL    : Level logging
-	yy   	 : Tahun dua digit
-	mm    	 : Bulan dua digit
-	dd    	 : Hari dua digit
-	HH    	 : Jam dua digit
-	MM    	 : Menit dua digit
-	SS    	 : Detik dua digit
-	CMD      : System call yang terpanggil
-	DESC     : Deskripsi tambahan (bisa lebih dari satu, dipisahkan dengan ::)
+	* Keterangan : <br>
+		LEVEL    : Level logging <br>
+		yy   	 : Tahun dua digit <br>
+		mm    	 : Bulan dua digit <br>
+		dd    	 : Hari dua digit <br>
+		HH    	 : Jam dua digit <br>
+		MM    	 : Menit dua digit <br>
+		SS    	 : Detik dua digit <br>
+		CMD      : System call yang terpanggil <br>
+		DESC     : Deskripsi tambahan (bisa lebih dari satu, dipisahkan dengan ::) <br>
 
