@@ -192,4 +192,8 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
    	fprintf(f, "::%s", desc[i]);
     ```
     karena _absolute file path_ akan ditemukan sepanjang ```lenDesc``` yang menunjukkan panjang _file path_ tersebut.
+    
+__Note__ : Coding ini ketika kita jalankan __Error__ karena ada beberapa fungsi yang belum kami buat.
+
+
    
