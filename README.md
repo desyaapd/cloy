@@ -193,7 +193,11 @@ Agar integritas _file system_ tersebut lebih terjamin, maka Jasir juga membuat _
     ```
     karena _absolute file path_ akan ditemukan sepanjang ```lenDesc``` yang menunjukkan panjang _file path_ tersebut.
     
-__Note__ : Coding ini ketika kita jalankan __Error__ karena ada beberapa fungsi yang belum kami buat.
+__Note__ : Coding ini ketika kita jalankan __Error__ karena ada beberapa fungsi yang belum kami buat. Mohon Maaf :(
+![Screenshot from 2020-05-02 10-03-27](https://user-images.githubusercontent.com/49342639/80853945-a3bb5880-8c5e-11ea-8516-0b3ea8e486f3.png)
+![Screenshot from 2020-05-02 10-03-55](https://user-images.githubusercontent.com/49342639/80853989-e2e9a980-8c5e-11ea-838d-a5cd6bedb7eb.png)
+
+
 
 
    
